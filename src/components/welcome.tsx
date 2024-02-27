@@ -6,7 +6,7 @@ import { Titan_One } from "next/font/google";
 const titanOne = Titan_One({ subsets: ["latin"], weight: "400" });
 export default function Welcome() {
   return (
-    <section className="min-h-screen w-full">
+    <section className="w-full min-h-screen relative z-[-1]">
       <LampContainer>
         <motion.h1
           initial={{ opacity: 0.5, y: 160 }}
