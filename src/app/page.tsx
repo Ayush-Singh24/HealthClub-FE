@@ -17,10 +17,12 @@ export default function Home() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className={`${titanOne.className} mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl`}
+          className={`${titanOne.className} mt-8 bg-gradient-to-b from-rose-300 to-white py-4 bg-clip-text text-center text-4xl font-medium text-transparent md:text-7xl tracking-wide`}
         >
           Health Club <br />
-          <span className="text-3xl">Where Ideas Heal, Together</span>
+          <span className="text-3xl text-rose-200 tracking-wider">
+            Where Ideas Heal, Together
+          </span>
         </motion.h1>
       </LampContainer>
     </motion.div>
