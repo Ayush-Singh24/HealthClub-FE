@@ -11,28 +11,25 @@ export default function Features() {
     title: string;
     iconName: IconProps["name"];
     description: string;
-    link: string;
+    link?: string;
   }[] = [
     {
       title: "Post",
       iconName: "pencil-line",
       description:
         "A technology company that builds economic infrastructure for the internet.",
-      link: "https://stripe.com",
     },
     {
       title: "Comment",
       iconName: "messages-square",
       description:
         "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-      link: "https://netflix.com",
     },
     {
-      title: "Google",
+      title: "Up-Vote",
       iconName: "arrow-big-up",
       description:
         "A multinational technology company that specializes in Internet-related services and products.",
-      link: "https://google.com",
     },
   ];
   return (
@@ -44,10 +41,9 @@ export default function Features() {
           About Health Club
         </h2>
         <span className="max-w-sm">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro ipsa
-          itaque nisi dolorem. Esse possimus ipsum quibusdam fuga molestiae,
-          vitae, est eveniet unde qui tenetur reiciendis, itaque nostrum ab
-          totam?
+          Health Club is the largest community of verified healthcare
+          professionals working together, safely and securely, to improve
+          patient outcomes.
         </span>
       </div>
       <div className="min-h-1/2 bg-orange-500">

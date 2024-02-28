@@ -12,7 +12,7 @@ export const HoverEffect = ({
     iconName: IconProps["name"];
     title: string;
     description: string;
-    link: string;
+    link?: string;
   }[];
   className?: string;
 }) => {
