@@ -8,21 +8,19 @@ import Image from "next/image";
 
 export default function Navbar() {
   const pathName = usePathname();
-  useEffect(() => {
-    console.log(pathName);
-  }, []);
   return (
     <div className="w-full fixed top-0 z-1000 p-2 bg-[rgb(253,164,175,0.6)] dark:bg-[rgb(12,10,9,0.6)] backdrop-blur-md">
       <div className="flex justify-between items-center max-w-[1170px] mx-auto w-full">
         <div className="">
-          <Image
-            className="w-auto h-auto"
-            priority
+          <img
+            className="w-36 h-auto block dark:hidden"
             alt="logo"
-            quality={100}
             src="/images/logo-dark.png"
-            width={100}
-            height={50}
+          />
+          <img
+            className="w-36 h-auto hidden dark:block"
+            alt="logo"
+            src="/images/logo-light.png"
           />
         </div>
         <div className="flex gap-5">
