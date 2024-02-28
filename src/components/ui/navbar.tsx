@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-full fixed top-0 z-1000 p-2 bg-[rgb(253,164,175,0.6)] dark:bg-[rgb(12,10,9,0.6)] backdrop-blur-md">
+      <div className="w-full fixed top-0 z-1000 p-2 bg-tlColor dark:bg-tdColor backdrop-blur-md">
         <div className="flex justify-between items-center max-w-[1170px] mx-auto w-full">
           <div className="">
             <img
