@@ -1,4 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = { transpilePackages: ["lucide-react"] };
+const nextConfig = {};
 
 export default nextConfig;

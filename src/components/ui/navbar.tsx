@@ -15,7 +15,15 @@ export default function Navbar() {
     <div className="w-full fixed top-0 z-1000 p-2 bg-[rgb(253,164,175,0.6)] dark:bg-[rgb(12,10,9,0.6)] backdrop-blur-md">
       <div className="flex justify-between items-center max-w-[1170px] mx-auto w-full">
         <div className="">
-          <Image alt="logo" src="/images/logo.png" width={140} height={50} />
+          <Image
+            className="w-auto h-auto"
+            priority
+            alt="logo"
+            quality={100}
+            src="/images/logo-dark.png"
+            width={100}
+            height={50}
+          />
         </div>
         <div className="flex gap-5">
           <div className="flex gap-2">

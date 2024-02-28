@@ -1,15 +1,16 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Icon, { IconProps } from "./icon";
+import { LucideIcon } from "lucide-react";
 
 export const HoverEffect = ({
   items,
   className,
 }: {
   items: {
-    iconName: IconProps["name"];
+    icon: ReactNode;
     title: string;
     description: string;
     link?: string;
@@ -51,7 +52,7 @@ export const HoverEffect = ({
           </AnimatePresence>
           <Card>
             <div className="flex gap-2 items-center">
-              <Icon name={item.iconName} />
+              {item.icon}
               <CardTitle>{item.title}</CardTitle>
             </div>
             <CardDescription>{item.description}</CardDescription>
