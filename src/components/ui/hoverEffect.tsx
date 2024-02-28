@@ -2,12 +2,14 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import Icon, { IconProps } from "./icon";
 
 export const HoverEffect = ({
   items,
   className,
 }: {
   items: {
+    iconName: IconProps["name"];
     title: string;
     description: string;
     link: string;
@@ -24,9 +26,8 @@ export const HoverEffect = ({
       )}
     >
       {items.map((item, idx) => (
-        <Link
-          href={item?.link}
-          key={item?.link}
+        <div
+          key={item?.title}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -49,10 +50,13 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            <CardTitle>{item.title}</CardTitle>
+            <div className="flex gap-2 items-center">
+              <Icon name={item.iconName} />
+              <CardTitle>{item.title}</CardTitle>
+            </div>
             <CardDescription>{item.description}</CardDescription>
           </Card>
-        </Link>
+        </div>
       ))}
     </div>
   );
@@ -88,7 +92,7 @@ export const CardTitle = ({
   return (
     <h4
       className={cn(
-        "text-black dark:text-zinc-100 font-bold tracking-wide mt-4",
+        "text-black dark:text-zinc-100 font-bold tracking-wide",
         className
       )}
     >
@@ -106,7 +110,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-8 text-zinc-500 dark:text-zinc-400 tracking-wide leading-relaxed text-sm",
+        "text-zinc-500 dark:text-zinc-400 tracking-wide leading-relaxed text-sm mt-8",
         className
       )}
     >

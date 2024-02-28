@@ -1,24 +1,35 @@
 import Image from "next/image";
 import { Titan_One } from "next/font/google";
 import { HoverEffect } from "./ui/hoverEffect";
+import { ReactNode } from "react";
+import { PencilLine, PencilLineIcon } from "lucide-react";
+import { IconProps } from "./ui/icon";
 const titanOne = Titan_One({ subsets: ["latin"], weight: "400" });
 
 export default function Features() {
-  const projects = [
+  const projects: {
+    title: string;
+    iconName: IconProps["name"];
+    description: string;
+    link: string;
+  }[] = [
     {
-      title: "Stripe",
+      title: "Post",
+      iconName: "pencil-line",
       description:
         "A technology company that builds economic infrastructure for the internet.",
       link: "https://stripe.com",
     },
     {
       title: "Netflix",
+      iconName: "pencil-line",
       description:
         "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
       link: "https://netflix.com",
     },
     {
       title: "Google",
+      iconName: "pencil-line",
       description:
         "A multinational technology company that specializes in Internet-related services and products.",
       link: "https://google.com",
