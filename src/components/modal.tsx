@@ -31,7 +31,7 @@ export function Modal({ children, isOpen, handleClose }: signUpModalProps) {
   return (
     <>
       <div className="fixed top-0 left-0 w-screen h-screen z-40 bg-[rgb(253,164,175,0.6)] dark:bg-[rgb(12,10,9,0.6)] backdrop-blur-md">
-        <div className="flex flex-col max-w-[1170px] h-screen p-10 mx-auto justify-center items-center ">
+        <div className="flex flex-col max-w-[1170px] h-screen pd-5 md:p-10 mx-auto justify-center items-center gap-2">
           <Button
             className="self-end rounded-full"
             variant="outline"
