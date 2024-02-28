@@ -21,15 +21,15 @@ export default function Features() {
       link: "https://stripe.com",
     },
     {
-      title: "Netflix",
-      iconName: "pencil-line",
+      title: "Comment",
+      iconName: "messages-square",
       description:
         "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
       link: "https://netflix.com",
     },
     {
       title: "Google",
-      iconName: "pencil-line",
+      iconName: "arrow-big-up",
       description:
         "A multinational technology company that specializes in Internet-related services and products.",
       link: "https://google.com",
@@ -51,12 +51,12 @@ export default function Features() {
         </span>
       </div>
       <div className="min-h-1/2 bg-orange-500">
-        <Image
+        {/* <Image
           alt="image"
           src="/public/images/logo.png"
           width={500}
           height={500}
-        />
+        /> */}
       </div>
       <div className="max-w-[1170px]">
         <HoverEffect items={projects} />
