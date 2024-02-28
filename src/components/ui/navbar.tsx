@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ModeToggle } from "./modeToggle";
 import { Modal } from "../modal";
 import { createPortal } from "react-dom";
+import SignUp from "../signup";
 
 export default function Navbar() {
   const pathName = usePathname();
@@ -56,7 +57,7 @@ export default function Navbar() {
             isOpen={signUpModalOpen}
             handleClose={() => setSignUpModalOpen(!signUpModalOpen)}
           >
-            <div>hello world</div>
+            <SignUp />
           </Modal>,
           document.body
         )}
