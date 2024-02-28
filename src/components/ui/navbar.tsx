@@ -4,7 +4,6 @@ import { Button } from "./button";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./modeToggle";
-import Image from "next/image";
 
 export default function Navbar() {
   const pathName = usePathname();
