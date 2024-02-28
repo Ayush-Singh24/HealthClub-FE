@@ -2,8 +2,8 @@ import Image from "next/image";
 import { Titan_One } from "next/font/google";
 import { HoverEffect } from "./ui/hoverEffect";
 import { ReactNode } from "react";
-import { LucideIcon, PencilLine, PencilLineIcon } from "lucide-react";
-import Icon, { IconProps } from "./ui/icon";
+import { ArrowBigUp, MessagesSquare, PencilLine } from "lucide-react";
+// import Icon, { IconProps } from "./ui/icon";
 import { motion, Variants } from "framer-motion";
 const titanOne = Titan_One({ subsets: ["latin"], weight: "400" });
 
@@ -30,19 +30,19 @@ export default function Features() {
   }[] = [
     {
       title: "Post",
-      icon: <Icon name="pencil-line" />,
+      icon: <PencilLine />,
       description:
         "A technology company that builds economic infrastructure for the internet.",
     },
     {
       title: "Comment",
-      icon: <Icon name="messages-square" />,
+      icon: <MessagesSquare />,
       description:
         "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
     },
     {
       title: "Up-Vote",
-      icon: <Icon name="arrow-big-up" />,
+      icon: <ArrowBigUp />,
       description:
         "A multinational technology company that specializes in Internet-related services and products.",
     },
