@@ -16,10 +16,10 @@ export default function Welcome() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className={`${titanOne.className} mt-8 bg-gradient-to-b from-rose-300 to-white py-4 bg-clip-text text-center text-4xl font-medium text-transparent md:text-7xl tracking-wide`}
+          className={`${titanOne.className} mt-8 bg-rose-500 dark:bg-gradient-to-b dark:from-rose-300 dark:to-white py-4 bg-clip-text text-center text-4xl font-medium text-transparent md:text-7xl tracking-wide`}
         >
           Health Club <br />
-          <span className="text-3xl text-rose-200 tracking-wider">
+          <span className="text-3xl text-rose-500 dark:text-rose-200 tracking-wider">
             Where Ideas Heal, Together
           </span>
         </motion.h1>
