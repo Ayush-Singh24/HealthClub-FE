@@ -1,17 +1,32 @@
+"use client";
 import Link from "next/link";
 import { Button } from "./button";
-import Image from "next/image";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathName = usePathname();
+  useEffect(() => {
+    console.log(pathName);
+  }, []);
   return (
     <div className="w-full fixed top-0 z-1000 p-2 backdrop-blur-md">
       <div className="flex justify-between items-center max-w-[1170px] mx-auto w-full">
         <div className="">logo aayega</div>
-        <div>
-          <Button asChild variant={"ghost"}>
+        <div className="flex gap-2">
+          <Button asChild variant={pathName === "/" ? "outline" : "ghost"}>
+            <Link href={"/"}>Home</Link>
+          </Button>
+          <Button asChild variant={pathName === "/about" ? "outline" : "ghost"}>
+            <Link href={"/about"}>About</Link>
+          </Button>
+          <Button asChild variant={pathName === "/login" ? "outline" : "ghost"}>
             <Link href={"/login"}>Login</Link>
           </Button>
-          <Button asChild variant={"ghost"}>
+          <Button
+            asChild
+            variant={pathName === "/signup" ? "outline" : "ghost"}
+          >
             <Link href={"/signup"}>Sign Up</Link>
           </Button>
         </div>

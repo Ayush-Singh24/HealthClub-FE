@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/ui/navbar";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["100", "500", "900"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <Navbar />
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
         </ThemeProvider>
