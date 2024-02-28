@@ -1,0 +1,50 @@
+import { useEffect } from "react";
+import { Button } from "./ui/button";
+import { X } from "lucide-react";
+
+interface signUpModalProps {
+  children: React.ReactNode;
+  isOpen: boolean;
+  handleClose: () => void;
+}
+
+export function Modal({ children, isOpen, handleClose }: signUpModalProps) {
+  useEffect(() => {
+    const closeOnEscKey = (e: KeyboardEvent) => {
+      e.key === "Escape" ? handleClose() : null;
+    };
+    document.body.addEventListener("keydown", closeOnEscKey);
+    return () => {
+      document.body.removeEventListener("keydown", closeOnEscKey);
+    };
+  }, [handleClose]);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return (): void => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <div className="fixed top-0 left-0 w-screen h-screen z-40 bg-[rgb(253,164,175,0.6)] dark:bg-[rgb(12,10,9,0.6)] backdrop-blur-md">
+        <div className="flex flex-col max-w-[1170px] h-screen p-10 mx-auto justify-center items-center ">
+          <Button
+            className="self-end rounded-full"
+            variant="outline"
+            onClick={handleClose}
+            size="icon"
+          >
+            <X />
+          </Button>
+          <div className="h-[90%] w-[90%] bg-white dark:bg-[#0c0a09] opacity-100">
+            {children}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
