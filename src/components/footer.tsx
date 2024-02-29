@@ -44,7 +44,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="h-1/2 md:h-full md:w-1/2 flex justify-center items-center">
+        <div className="h-1/2 md:h-full md:w-1/2 flex justify-center items-center border-t-2 border-t-zinc-500 md:border-l-zinc-500 md:border-l-2 border-l-0 md:border-t-0">
           <div className="flex justify-center items-center gap-1">
             <img
               src="/images/trademark.png"
