@@ -2,15 +2,17 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useState } from "react";
 
-export const HoverEffect = ({
+export const AboutCard = ({
   items,
   className,
 }: {
   items: {
-    icon: ReactNode;
+    pfp: string;
     title: string;
     description: string;
-    link?: string;
+    instagram?: string;
+    github?: string;
+    linkedin?: string;
   }[];
   className?: string;
 }) => {
@@ -49,7 +51,7 @@ export const HoverEffect = ({
           </AnimatePresence>
           <Card>
             <div className="flex gap-2 items-center">
-              {item.icon}
+              <img src={item.pfp} />
               <CardTitle>{item.title}</CardTitle>
             </div>
             <CardDescription>{item.description}</CardDescription>
