@@ -44,8 +44,14 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="bg-red-500 h-1/2 md:h-full md:w-1/2 flex justify-center items-center">
-          ayush
+        <div className="h-1/2 md:h-full md:w-1/2 flex justify-center items-center">
+          <div className="flex justify-center items-center gap-1">
+            <img
+              src="/images/trademark.png"
+              className="w-5 h-auto invert-0 dark:invert self-start"
+            />
+            <span className="text-3xl">HEALTH CLUB</span>
+          </div>
         </div>
       </div>
     </div>
