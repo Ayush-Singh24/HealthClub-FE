@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { ReactNode, useState } from "react";
 
 export const AboutCard = ({
@@ -21,7 +22,7 @@ export const AboutCard = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4  py-10",
+        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4  py-10 gap-5",
         className
       )}
     >
@@ -56,7 +57,29 @@ export const AboutCard = ({
               </div>
               <CardTitle>{item.name}</CardTitle>
             </div>
-            <CardDescription>{item.description}</CardDescription>
+            <div className="flex flex-col items-center gap-16">
+              <CardDescription>{item.description}</CardDescription>
+              <div className="flex gap-3 justify-center">
+                <Link href="/">
+                  <img
+                    src="/images/facebook.png"
+                    className="h-auto w-8 dark:invert"
+                  />
+                </Link>
+                <Link href="/">
+                  <img
+                    src="/images/instagram.png"
+                    className="h-auto w-8 dark:invert"
+                  />
+                </Link>
+                <Link href="/">
+                  <img
+                    src="/images/linkedin.png"
+                    className="h-auto w-8 dark:invert"
+                  />
+                </Link>
+              </div>
+            </div>
           </Card>
         </div>
       ))}
