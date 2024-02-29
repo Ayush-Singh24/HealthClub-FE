@@ -8,7 +8,7 @@ export const AboutCard = ({
 }: {
   items: {
     pfp: string;
-    title: string;
+    name: string;
     description: string;
     instagram?: string;
     github?: string;
@@ -21,13 +21,13 @@ export const AboutCard = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
+        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4  py-10",
         className
       )}
     >
       {items.map((item, idx) => (
         <div
-          key={item?.title}
+          key={item?.name}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -50,9 +50,11 @@ export const AboutCard = ({
             )}
           </AnimatePresence>
           <Card>
-            <div className="flex gap-2 items-center">
-              <img src={item.pfp} />
-              <CardTitle>{item.title}</CardTitle>
+            <div className="flex flex-col gap-8 items-center">
+              <div className="rounded-full overflow-hidden h-auto w-40">
+                <img src={item.pfp} />
+              </div>
+              <CardTitle>{item.name}</CardTitle>
             </div>
             <CardDescription>{item.description}</CardDescription>
           </Card>
@@ -72,7 +74,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-3 overflow-hidden bg-rose-50 dark:bg-sdColor border border-black/[0.2] dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        "rounded-2xl h-full w-full overflow-hidden bg-rose-50 p-3 dark:bg-sdColor border border-black/[0.2] dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
         className
       )}
     >
@@ -110,7 +112,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "text-zinc-500 dark:text-zinc-400 tracking-wide leading-relaxed text-base mt-8",
+        "text-zinc-500 dark:text-zinc-400 tracking-wide leading-relaxed text-base",
         className
       )}
     >
