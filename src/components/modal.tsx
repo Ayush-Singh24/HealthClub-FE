@@ -30,7 +30,7 @@ export function Modal({ children, isOpen, handleClose }: signUpModalProps) {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-screen h-screen z-40 bg-tlColor dark:bg-tdColor backdrop-blur-md">
+      <div className="fixed top-0 left-0 w-screen h-screen z-[2000] bg-tlColor dark:bg-tdColor backdrop-blur-md">
         <div className="flex flex-col max-w-[1170px] h-screen pd-5 md:p-10 mx-auto justify-center items-center gap-2">
           <Button
             className="self-end rounded-full"
