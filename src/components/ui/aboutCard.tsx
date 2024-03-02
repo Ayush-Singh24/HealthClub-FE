@@ -62,20 +62,20 @@ export const AboutCard = ({
               <div className="flex gap-3 justify-center">
                 <Link href="/">
                   <img
-                    src="/images/facebook.png"
-                    className="h-auto w-8 dark:invert"
+                    src="/images/github.png"
+                    className="h-auto w-8 dark:invert transition  hover:-translate-y-1"
                   />
                 </Link>
                 <Link href="/">
                   <img
                     src="/images/instagram.png"
-                    className="h-auto w-8 dark:invert"
+                    className="h-auto w-8 dark:invert transition  hover:-translate-y-1"
                   />
                 </Link>
                 <Link href="/">
                   <img
                     src="/images/linkedin.png"
-                    className="h-auto w-8 dark:invert"
+                    className="h-auto w-8 dark:invert transition  hover:-translate-y-1"
                   />
                 </Link>
               </div>

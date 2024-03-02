@@ -9,37 +9,37 @@ export default function Footer() {
             <Link href="/">
               <img
                 src="/images/facebook.png"
-                className="h-auto w-8 dark:invert"
+                className="h-auto w-8 dark:invert transition  hover:-translate-y-1"
               />
             </Link>
             <Link href="/">
               <img
                 src="/images/instagram.png"
-                className="h-auto w-8 dark:invert"
+                className="h-auto w-8 dark:invert transition  hover:-translate-y-1"
               />
             </Link>
             <Link href="/">
               <img
                 src="/images/linkedin.png"
-                className="h-auto w-8 dark:invert"
+                className="h-auto w-8 dark:invert transition  hover:-translate-y-1"
               />
             </Link>
             <Link href="/">
               <img
                 src="/images/youtube.png"
-                className="h-auto w-10 dark:invert"
+                className="h-auto w-10 dark:invert transition  hover:-translate-y-1"
               />
             </Link>
             <Link href="/">
               <img
                 src="/images/reddit-l.png"
-                className="h-auto w-10 dark:invert"
+                className="h-auto w-10 dark:invert transition  hover:-translate-y-1"
               />
             </Link>
             <Link href="/">
               <img
                 src="/images/x.png"
-                className="h-auto w-10 invert dark:invert-0"
+                className="h-auto w-10 invert dark:invert-0 transition  hover:-translate-y-1"
               />
             </Link>
           </div>
