@@ -30,21 +30,21 @@ export default function Features() {
   }[] = [
     {
       title: "Post",
-      icon: <PencilLine />,
+      icon: <PencilLine size={30} />,
       description:
-        "A technology company that builds economic infrastructure for the internet.",
+        "Users can create new post to share medical information or ask questions.",
     },
     {
       title: "Comment",
-      icon: <MessagesSquare />,
+      icon: <MessagesSquare size={30} />,
       description:
-        "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+        "Allows users to engage in discussions by providing feedback or additional information on posts.",
     },
     {
       title: "Vote",
-      icon: <ArrowBigUp />,
+      icon: <ArrowBigUp size={30} />,
       description:
-        "A multinational technology company that specializes in Internet-related services and products.",
+        "Enables users to show appreciation for helpful content by voting it up , increasing visibility of relevant posts.",
     },
   ];
   return (
