@@ -41,7 +41,7 @@ export default function Features() {
         "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
     },
     {
-      title: "Up-Vote",
+      title: "Vote",
       icon: <ArrowBigUp />,
       description:
         "A multinational technology company that specializes in Internet-related services and products.",
