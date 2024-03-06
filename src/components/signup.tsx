@@ -20,40 +20,81 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MAX_UPLOAD_SIZE, Professions } from "@/utils/constants";
+import {
+  ACCEPTED_FILE_TYPES,
+  MAX_UPLOAD_SIZE,
+  Professions,
+} from "@/utils/constants";
+import React, { useCallback } from "react";
+
 const signUpSchema = z
   .object({
     username: z
       .string({ required_error: "Username is required" })
       .min(5, { message: "Username must be 5 or more characters long" })
+      .regex(/^\S+$/, "Space is not allowed")
       .max(20, { message: "Username must be 20 or fewer characters long" }),
     firstName: z
       .string({ required_error: "First name is required" })
       .min(1, { message: "First name must be 5 or more characters long" })
+      .regex(/^\S+$/, "Space is not allowed")
       .max(20, { message: "First name must be 20 or fewer characters long" }),
     lastName: z
       .string({ required_error: "Last name is required" })
       .min(0, { message: "Last name must be 5 or more characters long" })
+      .regex(/^\S+$/, "Space is not allowed")
       .max(20, { message: "Last name must be 20 or fewer characters long" }),
     email: z
       .string({ required_error: "Last name is required" })
       .email({ message: "Invalid email address" }),
     phonenumber: z
       .string({ required_error: "Phone number is required" })
-      .length(10, { message: "Invalid phone number" }),
+      .length(10, { message: "Invalid phone number" })
+      .regex(/^\S+$/, "Space is not allowed"),
     password: z
       .string({
         required_error: "Password is required",
       })
       .min(5, { message: "Password must be 5 or more characters long" })
+      .regex(/^\S+$/, "Space is not allowed")
       .max(30, "Password must be 30 or fewer characters long"),
     profession: z.string({
       required_error: "Professtion is required",
     }),
     passwordConfirm: z.string(),
-    document: z.instanceof(File).refine((file) => {
-      !file || file.size <= MAX_UPLOAD_SIZE;
-    }, "Document must be less than 5MB"),
+    document: z
+      .custom<FileList>()
+      .transform((val) => {
+        if (val instanceof File) return val;
+        if (val instanceof FileList) return val[0];
+        return null;
+      })
+      .superRefine((file, ctx) => {
+        if (!(file instanceof File)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            fatal: true,
+            message: "Document is required",
+          });
+
+          return z.NEVER;
+        }
+
+        if (file.size > MAX_UPLOAD_SIZE) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Max file size allowed is 5MB",
+          });
+        }
+
+        if (!ACCEPTED_FILE_TYPES.includes(file.type)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Document must be of type either pdf, png or jpeg.",
+          });
+        }
+      })
+      .pipe(z.custom<File>()),
   })
   .refine(
     (data) => {
@@ -73,8 +114,15 @@ export default function SignUp() {
       email: "",
       password: "",
       passwordConfirm: "",
+      firstName: "",
+      lastName: "",
+      phonenumber: "",
+      profession: "",
+      document: undefined,
     },
+    mode: "onChange",
   });
+  const fileRef = form.register("document", { required: true });
   const onSubmit = (value: z.infer<typeof signUpSchema>) => {
     console.log(value);
   };
@@ -256,12 +304,33 @@ export default function SignUp() {
                         })}
                       </SelectContent>
                     </Select>
-                    <FormDescription>Re-Enter your password.</FormDescription>
+                    <FormDescription>Select your profession.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
+            <FormField
+              control={form.control}
+              name="document"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel className="text-2xl md:text-base">
+                    Document
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter phone number"
+                      {...fileRef}
+                      type="file"
+                      accept="application/pdf,image/jpeg,image/png"
+                    />
+                  </FormControl>
+                  <FormDescription>Upload your Document here.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button type="submit">Sign Up</Button>
           </form>
         </Form>
