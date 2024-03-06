@@ -7,11 +7,13 @@ import { ModeToggle } from "./modeToggle";
 import { Modal } from "../modal";
 import { createPortal } from "react-dom";
 import SignUp from "../signup";
+import Login from "../login";
 
 export default function Navbar() {
   const pathName = usePathname();
 
   const [signUpModalOpen, setSignUpModalOpen] = useState<boolean>(false);
+  const [loginModalOpen, setloginModalOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -40,7 +42,12 @@ export default function Navbar() {
               >
                 <Link href={"/about"}>About</Link>
               </Button>
-              <Button onClick={() => {}} variant="ghost">
+              <Button
+                onClick={() => {
+                  setloginModalOpen(true);
+                }}
+                variant="ghost"
+              >
                 Login
               </Button>
               <Button onClick={() => setSignUpModalOpen(true)} variant="ghost">
@@ -58,6 +65,16 @@ export default function Navbar() {
             handleClose={() => setSignUpModalOpen(!signUpModalOpen)}
           >
             <SignUp />
+          </Modal>,
+          document.body
+        )}
+      {loginModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={loginModalOpen}
+            handleClose={() => setloginModalOpen(!loginModalOpen)}
+          >
+            <Login />
           </Modal>,
           document.body
         )}
