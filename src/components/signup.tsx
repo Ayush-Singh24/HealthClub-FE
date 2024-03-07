@@ -25,7 +25,7 @@ import {
   MAX_UPLOAD_SIZE,
   Professions,
 } from "@/utils/constants";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 const signUpSchema = z
   .object({
@@ -107,6 +107,11 @@ const signUpSchema = z
   );
 
 export default function SignUp() {
+  const [preview, setPreview] = useState<{
+    url: string | ArrayBuffer | null;
+    name: string;
+  }>({ url: "", name: "" });
+  const [isUploaded, setIsUploaded] = useState<boolean>(false);
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -120,11 +125,32 @@ export default function SignUp() {
       profession: "",
       document: undefined,
     },
-    mode: "onChange",
+    mode: "onBlur",
   });
   const fileRef = form.register("document", { required: true });
   const onSubmit = (value: z.infer<typeof signUpSchema>) => {
     console.log(value);
+  };
+  const handlePreview = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement & {
+      files: FileList;
+    };
+    const file = new FileReader();
+
+    if (target.files[0].type === "application/pdf") {
+      setPreview({ url: "/images/pdf.png", name: target.files[0].name });
+      setIsUploaded(true);
+    } else {
+      try {
+        file.readAsDataURL(target.files[0]);
+        file.onload = () => {
+          setPreview({ url: file.result, name: target.files[0].name });
+          setIsUploaded(true);
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
   return (
     <div className="h-full w-full flex">
@@ -314,17 +340,38 @@ export default function SignUp() {
               control={form.control}
               name="document"
               render={({ field }) => (
-                <FormItem className="w-full">
+                <FormItem className="w-full flex-col">
                   <FormLabel className="text-2xl md:text-base">
                     Document
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter phone number"
-                      {...fileRef}
-                      type="file"
-                      accept="application/pdf,image/jpeg,image/png"
-                    />
+                    {isUploaded ? (
+                      <div className="w-full border-2 border-rose-500 p-2 rounded-2xl h-32">
+                        <div className="relative h-full flex w-full items-center">
+                          <img
+                            src={preview.url as any}
+                            className="h-full rounded-2xl"
+                          />
+                          <img
+                            src="/images/cross.png"
+                            className="w-auto h-5 absolute top-0 right-0 hover:cursor-pointer"
+                            onClick={() => setIsUploaded(false)}
+                          />
+                          <p className="w-full overflow-y-hidden break-words whitespace-normal">
+                            {preview.name}
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <Input
+                        placeholder="Enter phone number"
+                        {...fileRef}
+                        type="file"
+                        className=""
+                        accept="application/pdf,image/jpeg,image/png"
+                        onChange={handlePreview}
+                      />
+                    )}
                   </FormControl>
                   <FormDescription>Upload your Document here.</FormDescription>
                   <FormMessage />
