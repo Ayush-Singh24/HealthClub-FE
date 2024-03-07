@@ -127,7 +127,7 @@ export default function SignUp() {
     },
     mode: "onBlur",
   });
-  const fileRef = form.register("document", { required: true });
+  let fileRef = form.register("document", { required: true });
   const onSubmit = (value: z.infer<typeof signUpSchema>) => {
     console.log(value);
   };
@@ -151,6 +151,10 @@ export default function SignUp() {
         console.log(error);
       }
     }
+  };
+  const handleRemoval = () => {
+    form.resetField("document");
+    setIsUploaded(false);
   };
   return (
     <div className="h-full w-full flex">
@@ -346,8 +350,8 @@ export default function SignUp() {
                   </FormLabel>
                   <FormControl>
                     {isUploaded ? (
-                      <div className="w-full border-2 border-rose-500 p-2 rounded-2xl h-32">
-                        <div className="relative h-full flex w-full items-center">
+                      <div className="w-full border-dashed border-2 border-rose-500 p-2 rounded-2xl h-32">
+                        <div className="relative h-full flex gap-2 w-full items-center">
                           <img
                             src={preview.url as any}
                             className="h-full rounded-2xl"
@@ -355,7 +359,7 @@ export default function SignUp() {
                           <img
                             src="/images/cross.png"
                             className="w-auto h-5 absolute top-0 right-0 hover:cursor-pointer"
-                            onClick={() => setIsUploaded(false)}
+                            onClick={handleRemoval}
                           />
                           <p className="w-full overflow-y-hidden break-words whitespace-normal">
                             {preview.name}
@@ -363,14 +367,23 @@ export default function SignUp() {
                         </div>
                       </div>
                     ) : (
-                      <Input
-                        placeholder="Enter phone number"
-                        {...fileRef}
-                        type="file"
-                        className=""
-                        accept="application/pdf,image/jpeg,image/png"
-                        onChange={handlePreview}
-                      />
+                      <>
+                        <label
+                          htmlFor="docs"
+                          className="text-2xl w-full h-32 border-2 flex  border-dashed hover:cursor-pointer justify-center items-center p-2 rounded-2xl border-rose-500"
+                        >
+                          Upload
+                        </label>
+                        <input
+                          id="docs"
+                          placeholder="Upload your document"
+                          {...fileRef}
+                          type="file"
+                          className="invisible"
+                          accept="application/pdf,image/jpeg,image/png"
+                          onChangeCapture={handlePreview}
+                        />
+                      </>
                     )}
                   </FormControl>
                   <FormDescription>Upload your Document here.</FormDescription>
