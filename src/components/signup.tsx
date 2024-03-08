@@ -112,6 +112,7 @@ export default function SignUp() {
     name: string;
   }>({ url: "", name: "" });
   const [isUploaded, setIsUploaded] = useState<boolean>(false);
+  const [isDrag, setIsDrag] = useState<boolean>(false);
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -151,6 +152,36 @@ export default function SignUp() {
         console.log(error);
       }
     }
+  };
+  const handleDrag = (event: React.DragEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    setIsDrag(true);
+  };
+  const handleDragLeave = (event: React.DragEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    setIsDrag(false);
+  };
+  const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    const target = event.dataTransfer;
+    const file = new FileReader();
+
+    if (target.files[0].type === "application/pdf") {
+      setPreview({ url: "/images/pdf.png", name: target.files[0]?.name });
+      setIsUploaded(true);
+    } else {
+      try {
+        file.readAsDataURL(target.files[0]);
+        file.onload = () => {
+          setPreview({ url: file.result, name: target.files[0]?.name });
+          setIsUploaded(true);
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    form.setValue("document", event.dataTransfer.files[0]);
+    setIsDrag(false);
   };
   const handleRemoval = () => {
     form.resetField("document");
@@ -370,7 +401,12 @@ export default function SignUp() {
                       <>
                         <label
                           htmlFor="docs"
-                          className="text-2xl w-full h-32 border-2 flex  border-dashed hover:cursor-pointer justify-center items-center p-2 rounded-2xl border-rose-500"
+                          onDragOver={handleDrag}
+                          onDrop={handleDrop}
+                          onDragLeave={handleDragLeave}
+                          className={`text-2xl transition w-full h-32 border-2 flex  border-dashed hover:cursor-pointer justify-center items-center p-2 rounded-2xl border-rose-500 relative ${
+                            isDrag ? "bg-tlColor border-black" : ""
+                          } `}
                         >
                           Upload
                         </label>
@@ -379,7 +415,7 @@ export default function SignUp() {
                           placeholder="Upload your document"
                           {...fileRef}
                           type="file"
-                          className="invisible"
+                          className="invisible absolute top-0"
                           accept="application/pdf,image/jpeg,image/png"
                           onChangeCapture={handlePreview}
                         />
