@@ -126,7 +126,7 @@ export default function SignUp() {
       profession: "",
       document: undefined,
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
   let fileRef = form.register("document", { required: true });
   const onSubmit = (value: z.infer<typeof signUpSchema>) => {
@@ -408,7 +408,9 @@ export default function SignUp() {
                             isDrag ? "bg-tlColor border-black" : ""
                           } `}
                         >
-                          Upload
+                          {!isDrag
+                            ? "Click or Drag and Drop to upload"
+                            : "Drop the file"}
                         </label>
                         <input
                           id="docs"
