@@ -5,6 +5,14 @@ export const ACCEPTED_FILE_TYPES = [
   "image/png",
   "application/pdf",
 ];
+
+export const API_ROUTES = {
+  Login: "/auth/login",
+  SignUp: "/auth/signup",
+  Logout: "/auth/logout",
+  VerifyToken: "/",
+};
+
 export const Professions: string[] = [
   "Physical Therapist",
   "Dental Hygienist",
