@@ -33,7 +33,10 @@ export default function Navbar() {
           </div>
           <div className="flex gap-5">
             <div className="flex gap-2">
-              <Button asChild variant={pathName === "/" ? "outline" : "ghost"}>
+              <Button
+                asChild
+                variant={pathName === "/home" ? "outline" : "ghost"}
+              >
                 <Link href={"/"}>Home</Link>
               </Button>
               <Button
