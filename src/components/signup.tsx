@@ -24,8 +24,11 @@ import {
   ACCEPTED_FILE_TYPES,
   MAX_UPLOAD_SIZE,
   Professions,
+  ResponseStatus,
 } from "@/utils/constants";
 import React, { useCallback, useState } from "react";
+import { Service } from "@/services/services";
+import { useRouter } from "next/navigation";
 
 const signUpSchema = z
   .object({
@@ -107,6 +110,7 @@ const signUpSchema = z
   );
 
 export default function SignUp() {
+  const router = useRouter();
   const [preview, setPreview] = useState<{
     url: string | ArrayBuffer | null;
     name: string;
@@ -129,8 +133,17 @@ export default function SignUp() {
     mode: "onChange",
   });
   let fileRef = form.register("document", { required: true });
-  const onSubmit = (value: z.infer<typeof signUpSchema>) => {
-    console.log(value);
+  const onSubmit = async (value: z.infer<typeof signUpSchema>) => {
+    const data = new FormData();
+    const { document, passwordConfirm, ...userData } = value;
+    data.append("crazy", document);
+    data.append("data", JSON.stringify(userData));
+    const response = await Service.signUp(data);
+    if (response.status === ResponseStatus.Created) {
+      router.push("/");
+    } else {
+      console.log(response);
+    }
   };
   const handlePreview = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement & {

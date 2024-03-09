@@ -9,9 +9,9 @@ const makePostFormRequest = async (
 ) => {
   const response = await fetch(BACKEND_URL + url, {
     method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+    // headers: {
+    //   "Content-Type": "multipart/form-data",
+    // },
     body: data,
     signal: signal,
   });
