@@ -38,7 +38,7 @@ export default function Navbar() {
               </Button>
               <Button
                 asChild
-                variant={pathName === "/about" ? "outline" : "ghost"}
+                variant={pathName === "/home/about" ? "outline" : "ghost"}
               >
                 <Link href={"/about"}>About</Link>
               </Button>
