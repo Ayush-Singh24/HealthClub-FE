@@ -3,7 +3,7 @@ import { ResponseStatus } from "@/utils/constants";
 import { useState } from "react";
 
 export function useAuth() {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean | null>(null);
   useState(() => {
     Service.verify().then((data) => {
       if (data.status === ResponseStatus.Ok) {

@@ -1,7 +1,18 @@
 "use client";
 import { AboutCard } from "@/components/ui/aboutCard";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 export default function About() {
+  const isAuth = useAuth();
+  const router = useRouter();
+  if (isAuth === null) {
+    return <div>loading</div>;
+  }
+  if (isAuth) {
+    router.push("/feed");
+    return <div>loading</div>;
+  }
   interface Team {
     pfp: string;
     name: string;

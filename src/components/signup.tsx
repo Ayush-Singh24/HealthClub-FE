@@ -146,7 +146,7 @@ export default function SignUp() {
         title: "Woohoo!",
         description: "Successfully Signed Up!",
       });
-      router.push("/");
+      router.push("/feed");
     } else {
       toast({
         title: "Uh oh! Something went wrong.",
