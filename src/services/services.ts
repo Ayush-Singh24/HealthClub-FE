@@ -16,7 +16,10 @@ const makePostFormRequest = async (
     signal: signal,
   });
   const json = await response.json();
-  return { status: response.status, ...json };
+  return {
+    status: response.status,
+    res: { ...json },
+  };
 };
 
 const makePostRequest = async (
@@ -36,7 +39,7 @@ const makePostRequest = async (
   const json = await response.json();
   return {
     status: response.status,
-    ...json,
+    res: { ...json },
   };
 };
 
@@ -54,7 +57,7 @@ const makeGetRequest = async (url: string, signal?: AbortSignal) => {
 
   return {
     status: response.status,
-    ...json,
+    res: { ...json },
   };
 };
 

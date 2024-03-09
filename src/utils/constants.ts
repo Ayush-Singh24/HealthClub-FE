@@ -13,6 +13,11 @@ export const API_ROUTES = {
   VerifyToken: "/",
 };
 
+export const ResponseStatus = {
+  Ok: 200,
+  Created: 201,
+};
+
 export const Professions: string[] = [
   "Physical Therapist",
   "Dental Hygienist",
