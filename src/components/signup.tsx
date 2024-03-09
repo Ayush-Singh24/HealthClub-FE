@@ -26,9 +26,10 @@ import {
   Professions,
   ResponseStatus,
 } from "@/utils/constants";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { Service } from "@/services/services";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 const signUpSchema = z
   .object({
@@ -117,6 +118,7 @@ export default function SignUp() {
   }>({ url: "", name: "" });
   const [isUploaded, setIsUploaded] = useState<boolean>(false);
   const [isDrag, setIsDrag] = useState<boolean>(false);
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -140,9 +142,16 @@ export default function SignUp() {
     data.append("data", JSON.stringify(userData));
     const response = await Service.signUp(data);
     if (response.status === ResponseStatus.Created) {
+      toast({
+        title: "Woohoo!",
+        description: "Successfully Signed Up!",
+      });
       router.push("/");
     } else {
-      console.log(response);
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: response.res?.message,
+      });
     }
   };
   const handlePreview = (e: React.FormEvent<HTMLInputElement>) => {
