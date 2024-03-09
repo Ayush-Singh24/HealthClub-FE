@@ -19,7 +19,7 @@ export default function Navbar() {
     <>
       <div className="w-full fixed top-0 z-[1000] p-2 bg-tlColor dark:bg-tdColor backdrop-blur-md">
         <div className="flex justify-between items-center max-w-[1170px] mx-auto w-full">
-          <div className="">
+          <div className="pt-2">
             <img
               className="w-36 h-auto block dark:hidden"
               alt="logo"
