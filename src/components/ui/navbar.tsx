@@ -40,7 +40,7 @@ export default function Navbar() {
                 asChild
                 variant={pathName === "/home/about" ? "outline" : "ghost"}
               >
-                <Link href={"/about"}>About</Link>
+                <Link href={"/home/about"}>About</Link>
               </Button>
               <Button
                 onClick={() => {
