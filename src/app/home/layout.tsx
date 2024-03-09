@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/footer";
@@ -18,12 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={poppins.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <section>
+      <ThemeProvider attribute="class" defaultTheme="dark">
+        <Navbar />
+        {children}
+        <Footer />
+      </ThemeProvider>
+    </section>
   );
 }
