@@ -40,7 +40,7 @@ export function Modal({ children, isOpen, handleClose }: signUpModalProps) {
           >
             <X />
           </Button>
-          <div className="h-[90%] w-[90%] bg-white dark:bg-pdColor opacity-100">
+          <div className="max-h-[626px] h-[90%] w-[90%] bg-white dark:bg-pdColor opacity-100">
             {children}
           </div>
         </div>
