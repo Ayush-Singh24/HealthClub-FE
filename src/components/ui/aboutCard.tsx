@@ -29,7 +29,7 @@ export const AboutCard = ({
       {items.map((item, idx) => (
         <div
           key={item?.name}
-          className="relative group  block p-2 h-full w-full"
+          className="relative group  block p-2 h-full w-full max-h-[501px]"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -51,15 +51,17 @@ export const AboutCard = ({
             )}
           </AnimatePresence>
           <Card>
-            <div className="flex flex-col gap-8 items-center">
-              <div className="rounded-full overflow-hidden h-auto w-40">
-                <img src={item.pfp} />
+            <div className="flex flex-col h-full">
+              <div className="flex flex-col gap-8 items-center flex-1">
+                <div className="rounded-full overflow-hidden h-auto w-40">
+                  <img src={item.pfp} />
+                </div>
+                <div className="flex justify-center flex-col items-center">
+                  <CardTitle className="text-center">{item.name}</CardTitle>
+                  <CardDescription>{item.description}</CardDescription>
+                </div>
               </div>
-              <CardTitle>{item.name}</CardTitle>
-            </div>
-            <div className="flex flex-col items-center gap-16">
-              <CardDescription>{item.description}</CardDescription>
-              <div className="flex gap-3 justify-center">
+              <div className="flex gap-3 h-full items-center justify-center">
                 <Link href="/">
                   <img
                     src="/images/github.png"
@@ -101,8 +103,8 @@ export const Card = ({
         className
       )}
     >
-      <div className="relative z-50">
-        <div className="p-3">{children}</div>
+      <div className="relative z-50 h-full">
+        <div className="p-3 h-full">{children}</div>
       </div>
     </div>
   );
