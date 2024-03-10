@@ -13,13 +13,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Service } from "@/services/services";
+import { ResponseStatus } from "@/utils/constants";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   username: z
@@ -37,6 +34,8 @@ const loginSchema = z.object({
 });
 
 export default function Login() {
+  const { toast } = useToast();
+  const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -46,8 +45,19 @@ export default function Login() {
     mode: "onChange",
   });
 
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+    const response = await Service.login(values);
+    if (response.status === ResponseStatus.Ok) {
+      router.push("/feed");
+      toast({
+        description: "Successfully Logged In 😊",
+      });
+    } else {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: response.res.message,
+      });
+    }
   };
 
   return (
@@ -82,7 +92,11 @@ export default function Login() {
                 <FormItem>
                   <FormLabel className="text-4xl">Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter Password" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Enter Password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
