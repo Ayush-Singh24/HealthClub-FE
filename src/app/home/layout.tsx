@@ -1,5 +1,4 @@
 import "../globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/footer";
 
@@ -10,11 +9,9 @@ export default function HomeLayout({
 }>) {
   return (
     <section>
-      <ThemeProvider attribute="class" defaultTheme="dark">
-        <Navbar />
-        {children}
-        <Footer />
-      </ThemeProvider>
+      <Navbar />
+      {children}
+      <Footer />
     </section>
   );
 }

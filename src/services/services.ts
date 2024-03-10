@@ -12,6 +12,7 @@ const makePostFormRequest = async (
     // headers: {
     //   "Content-Type": "multipart/form-data",
     // },
+    credentials: "include",
     body: data,
     signal: signal,
   });
@@ -33,6 +34,7 @@ const makePostRequest = async (
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+    credentials: "include",
     signal: signal,
   });
 
