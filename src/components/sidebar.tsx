@@ -1,5 +1,6 @@
 import { Bell, Home, Mail, Search, UserRound, UsersRound } from "lucide-react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export default function SideBar() {
   return (
@@ -9,10 +10,10 @@ export default function SideBar() {
       </div>
       <div className="flex flex-col p-5 gap-8 justify-center items-stretch h-full">
         <Button className="text-2xl px-0" variant={"ghost"}>
-          <div className="flex items-center gap-3 w-full">
+          <Link className="flex items-center gap-3 w-full" href="/feed">
             <Home size={30} />
             <span>Home</span>
-          </div>
+          </Link>
         </Button>
         <Button className="text-2xl  px-0" variant={"ghost"}>
           <div className="flex items-center gap-3 w-full">
