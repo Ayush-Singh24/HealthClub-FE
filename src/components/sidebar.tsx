@@ -1,14 +1,5 @@
 "use client";
-import {
-  Bell,
-  Home,
-  Mail,
-  Plus,
-  Search,
-  SunMoon,
-  UserRound,
-  UsersRound,
-} from "lucide-react";
+import { Bell, Home, Mail, Plus, SunMoon, Tent, UserRound } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -47,26 +38,13 @@ export default function SideBar() {
             </span>
           </Link>
         </Button>
-        <Button
-          className={`text-2xl px-0 lg:border-0 ${
-            pathname === "/feed/explore"
-              ? "border-rose-500 border-2"
-              : "border-0"
-          }`}
-          variant={"ghost"}
-        >
+        <Button variant={"ghost"} className="text-2xl px-0">
           <Link
-            href="/feed/explore"
+            href="/campaigns"
             className="flex justify-center lg:justify-stretch items-center gap-3 p-2 w-full"
           >
-            <Search size={30} />
-            <span
-              className={`${
-                pathname === "/feed/explore" ? `font-semibold` : ""
-              } hidden lg:block`}
-            >
-              Explore
-            </span>
+            <Tent size={30} />
+            <span className={`hidden lg:block`}>Campaigns</span>
           </Link>
         </Button>
         <Button
