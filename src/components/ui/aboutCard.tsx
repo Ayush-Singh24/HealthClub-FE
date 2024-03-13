@@ -54,7 +54,7 @@ export const AboutCard = ({
             <div className="flex flex-col h-full">
               <div className="flex flex-col gap-8 items-center flex-1">
                 <div className="rounded-full overflow-hidden h-auto w-40">
-                  <img src={item.pfp} />
+                  <img src={item.pfp} className="object-cover" />
                 </div>
                 <div className="flex justify-center flex-col items-center">
                   <CardTitle className="text-center">{item.name}</CardTitle>

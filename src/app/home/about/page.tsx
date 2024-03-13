@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/app/loader";
 import { AboutCard } from "@/components/ui/aboutCard";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -7,11 +8,11 @@ export default function About() {
   const isAuth = useAuth();
   const router = useRouter();
   if (isAuth === null) {
-    return <div>loading</div>;
+    return <Loader />;
   }
   if (isAuth) {
     router.push("/feed");
-    return <div>loading</div>;
+    return <Loader />;
   }
   interface Team {
     pfp: string;
@@ -28,18 +29,18 @@ export default function About() {
       description: "Second year CSE student",
     },
     {
-      pfp: "/images/ayush.png",
-      name: "Ayush Singh1",
+      pfp: "/images/shashank.jpeg",
+      name: "Shashank Prasad",
       description: "Second year CSE student",
     },
     {
-      pfp: "/images/ayush.png",
-      name: "Ayush Singh2",
+      pfp: "/images/devansh.jpeg",
+      name: "Devansh Patel",
       description: "Second year CSE student",
     },
     {
-      pfp: "/images/ayush.png",
-      name: "Ayush Singh3",
+      pfp: "/images/achal.jpeg",
+      name: "Achal Bajpai",
       description: "Second year CSE student",
     },
   ];
