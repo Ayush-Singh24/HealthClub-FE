@@ -30,6 +30,7 @@ import React, { useState } from "react";
 import { Service } from "@/services/services";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import Loader from "@/app/loader";
 
 const signUpSchema = z
   .object({
@@ -118,6 +119,7 @@ export default function SignUp() {
   }>({ url: "", name: "" });
   const [isUploaded, setIsUploaded] = useState<boolean>(false);
   const [isDrag, setIsDrag] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -140,6 +142,7 @@ export default function SignUp() {
     const { document, passwordConfirm, ...userData } = value;
     data.append("crazy", document);
     data.append("data", JSON.stringify(userData));
+    setIsLoading(true);
     const response = await Service.signUp(data);
     if (response.status === ResponseStatus.Created) {
       toast({
@@ -152,6 +155,7 @@ export default function SignUp() {
         title: "Uh oh! Something went wrong.",
         description: response.res?.message,
       });
+      setIsLoading(false);
     }
   };
   const handlePreview = (e: React.FormEvent<HTMLInputElement>) => {
@@ -209,6 +213,9 @@ export default function SignUp() {
     form.resetField("document");
     setIsUploaded(false);
   };
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div className="h-full w-full flex">
       <div className="w-1/3 h-full bg-green-500 hidden md:flex">

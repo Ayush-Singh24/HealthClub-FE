@@ -16,6 +16,8 @@ import { Service } from "@/services/services";
 import { ResponseStatus } from "@/utils/constants";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Loader from "@/app/loader";
 
 const loginSchema = z.object({
   username: z
@@ -34,6 +36,7 @@ const loginSchema = z.object({
 
 export default function Login() {
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -45,6 +48,7 @@ export default function Login() {
   });
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+    setIsLoading(true);
     const response = await Service.login(values);
     if (response.status === ResponseStatus.Ok) {
       router.push("/feed");
@@ -56,8 +60,13 @@ export default function Login() {
         title: "Uh oh! Something went wrong.",
         description: response.res.message,
       });
+      setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="h-full w-full flex">

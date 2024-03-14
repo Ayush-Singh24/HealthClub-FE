@@ -2,7 +2,7 @@
 import { Comment } from "react-loader-spinner";
 export default function Loader() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
+    <div className="h-full w-full mx-auto flex justify-center items-center fixed top-0 left-0 z-[15000]">
       <Comment
         visible={true}
         height={200}
