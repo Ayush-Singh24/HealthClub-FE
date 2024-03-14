@@ -25,12 +25,15 @@ import {
 import { Service } from "@/services/services";
 import { ResponseStatus } from "@/utils/constants";
 import { useToast } from "./ui/use-toast";
+import { useContext } from "react";
+import { UserContext } from "@/app/feed/layout";
 
 export default function SideBar() {
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
   const { theme, setTheme } = useTheme();
+  const user = useContext(UserContext);
   const handleTheme = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark");
   };
@@ -173,8 +176,8 @@ export default function SideBar() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div className="hidden lg:flex flex-col gap-2">
-                  <span className="text-left">name</span>
-                  <span className="text-left">username</span>
+                  <span className="text-left">{user?.firstName}</span>
+                  <span className="text-left">{user?.username}</span>
                 </div>
               </div>
               <ChevronDown className="hidden lg:block" />
