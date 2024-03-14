@@ -1,10 +1,10 @@
 import { Service } from "@/services/services";
 import { ResponseStatus } from "@/utils/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useAuth() {
   const [isAuth, setIsAuth] = useState<boolean | null>(null);
-  useState(() => {
+  useEffect(() => {
     Service.verify().then((data) => {
       if (data.status === ResponseStatus.Ok) {
         setIsAuth(true);
@@ -12,6 +12,6 @@ export function useAuth() {
         setIsAuth(false);
       }
     });
-  });
+  }, []);
   return isAuth;
 }
