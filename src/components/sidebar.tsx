@@ -53,43 +53,45 @@ export default function SideBar() {
     }
   };
   return (
-    <div className="hidden h-screen lg:basis-1/4 md:flex flex-col overflow-hidden sticky left-0 top-0">
-      <div className="py-5 px-7 hidden lg:block">
+    <div className="hidden h-screen xl:basis-1/4 md:flex flex-col overflow-hidden sticky left-0 top-0">
+      <div className="py-5 px-7 hidden xl:block">
         <img src="/images/logo-light.png" className="w-36 hidden dark:block" />
         <img src="/images/logo-dark.png" className="w-36 block dark:hidden" />
       </div>
-      <div className="flex flex-col p-5 gap-8 lg:justify-center items-stretch h-full">
+      <div className="flex flex-col p-5 gap-8 xl:justify-center items-stretch h-full">
         <Button
-          className={`text-2xl px-0 lg:border-0 ${
+          asChild
+          className={`text-2xl px-0 xl:border-0 ${
             pathname === "/feed" ? "border-rose-500" : ""
           } border-2`}
           variant={"ghost"}
         >
           <Link
-            className="flex justify-center lg:justify-stretch items-center gap-3 w-full p-2"
+            className="flex justify-center xl:justify-stretch items-center gap-3 w-full p-2"
             href="/feed"
           >
             <Home size={30} />
             <span
               className={`${
                 pathname === "/feed" ? `font-semibold` : ""
-              } hidden lg:block`}
+              } hidden xl:block`}
             >
               Home
             </span>
           </Link>
         </Button>
-        <Button variant={"ghost"} className="text-2xl px-0">
+        <Button asChild variant={"ghost"} className="text-2xl px-0">
           <Link
             href="/campaigns"
-            className="flex justify-center lg:justify-stretch items-center gap-3 p-2 w-full"
+            className="flex justify-center xl:justify-stretch items-center gap-3 p-2 w-full"
           >
             <Tent size={30} />
-            <span className={`hidden lg:block`}>Campaigns</span>
+            <span className={`hidden xl:block`}>Campaigns</span>
           </Link>
         </Button>
         <Button
-          className={`text-2xl px-0 lg:border-0 ${
+          asChild
+          className={`text-2xl px-0 xl:border-0 ${
             pathname === "/feed/notifications"
               ? "border-rose-500 border-2"
               : "border-0"
@@ -98,20 +100,21 @@ export default function SideBar() {
         >
           <Link
             href="/feed/notifications"
-            className="flex justify-center lg:justify-stretch items-center gap-3 p-2 w-full"
+            className="flex justify-center xl:justify-stretch items-center gap-3 p-2 w-full"
           >
             <Bell size={30} />
             <span
               className={`${
                 pathname === "/feed/notifications" ? `font-semibold` : ""
-              } hidden lg:block`}
+              } hidden xl:block`}
             >
               Notifications
             </span>
           </Link>
         </Button>
         <Button
-          className={`text-2xl px-0 lg:border-0 ${
+          asChild
+          className={`text-2xl px-0 xl:border-0 ${
             pathname === "/feed/messages"
               ? "border-rose-500 border-2"
               : "border-0"
@@ -120,30 +123,32 @@ export default function SideBar() {
         >
           <Link
             href="/feed/messages"
-            className="flex justify-center lg:justify-stretch items-center gap-3 p-2 w-full"
+            className="flex justify-center xl:justify-stretch items-center gap-3 p-2 w-full"
           >
             <Mail size={30} />
             <span
               className={`${
                 pathname === "/feed/messages" ? `font-semibold` : ""
-              } hidden lg:block`}
+              } hidden xl:block`}
             >
               Messages
             </span>
           </Link>
         </Button>
         <Button
+          asChild
           className="text-2xl px-0"
           variant={"ghost"}
           onClick={handleTheme}
         >
-          <div className="flex justify-center lg:justify-stretch items-center gap-3 p-2 w-full">
+          <div className="flex justify-center xl:justify-stretch items-center gap-3 p-2 w-full">
             <SunMoon size={30} />
-            <span className="hidden lg:block">Theme</span>
+            <span className="hidden xl:block">Theme</span>
           </div>
         </Button>
         <Button
-          className={`text-2xl px-0 lg:border-0 ${
+          asChild
+          className={`text-2xl px-0 xl:border-0 ${
             pathname === "/feed/profile"
               ? "border-2 border-rose-500"
               : "border-0"
@@ -152,13 +157,13 @@ export default function SideBar() {
         >
           <Link
             href="/feed/profile"
-            className="flex justify-center lg:justify-stretch items-center gap-3 p-2 w-full"
+            className="flex justify-center xl:justify-stretch items-center gap-3 p-2 w-full"
           >
             <UserRound size={30} />
             <span
               className={`${
                 pathname === "/feed/profile" ? `font-semibold` : ""
-              } hidden lg:block`}
+              } hidden xl:block`}
             >
               Profile
             </span>
@@ -168,19 +173,30 @@ export default function SideBar() {
           <DropdownMenuTrigger asChild>
             <Button
               variant={"ghost"}
-              className="lg:p-8 rounded-full flex justify-center lg:justify-between p-0 lg:border-2 "
+              className="xl:p-8 xl:rounded-full flex justify-center xl:justify-between p-0 xl:border-2 "
             >
               <div className="flex gap-5">
-                <Avatar className="h-12 w-auto">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
+                <Avatar className="h-12 w-12">
+                  <AvatarImage src={`${user?.profilePic}`} />
+                  <AvatarFallback className="text-xl">
+                    {user?.firstName[0].toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
-                <div className="hidden lg:flex flex-col gap-2">
-                  <span className="text-left">{user?.firstName}</span>
-                  <span className="text-left">{user?.username}</span>
+                <div className="hidden xl:flex flex-col gap-1">
+                  <span className="text-left text-base break-words whitespace-normal">
+                    {(user?.firstName + " " + user?.lastName).length >= 15
+                      ? (user?.firstName + " " + user?.lastName).substring(
+                          0,
+                          12
+                        ) + "..."
+                      : user?.firstName + " " + user?.lastName}
+                  </span>
+                  <span className="text-left text-zinc-600">
+                    {user?.username}
+                  </span>
                 </div>
               </div>
-              <ChevronDown className="hidden lg:block" />
+              <ChevronDown className="hidden xl:block" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-pdColor w-56 flex flex-col gap-3 rounded border-2 m-2 p-2 shadow-2xl shadow-zinc-600 animate-out">
@@ -197,11 +213,11 @@ export default function SideBar() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button className="text-4xl self-start lg:self-center rounded-full flex justify-center items-center lg:p-8">
-          <div className="lg:hidden">
+        <Button className="text-4xl self-start xl:self-center xl:rounded-full flex justify-center items-center xl:p-8">
+          <div className="xl:hidden">
             <Plus />
           </div>
-          <div className="hidden lg:block">Post</div>
+          <div className="hidden xl:block">Post</div>
         </Button>
       </div>
     </div>
