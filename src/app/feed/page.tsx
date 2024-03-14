@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import MainPage from "@/components/mainPage";
 
 export default function Feed() {
-  const isAuth = useAuth();
+  const { isAuth } = useAuth();
   const router = useRouter();
   if (isAuth === null) {
     return <Loader />;

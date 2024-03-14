@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 export default function About() {
-  const isAuth = useAuth();
+  const { isAuth } = useAuth();
   const router = useRouter();
   if (isAuth === null) {
     return <div>loading</div>;

@@ -70,3 +70,15 @@ export const Professions: string[] = [
   "Orthotist or Prosthetist",
   "Psychiatrist",
 ];
+
+export type User = {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  phonenumber: string;
+  profession: string;
+  profilePic: string | null;
+  isVerified: boolean;
+};

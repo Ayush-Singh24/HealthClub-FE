@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
-  const isAuth = useAuth();
+  const { isAuth } = useAuth();
   if (isAuth === null) {
     return <Loader />;
   }
