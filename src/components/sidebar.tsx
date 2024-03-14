@@ -1,15 +1,53 @@
 "use client";
-import { Bell, Home, Mail, Plus, SunMoon, Tent, UserRound } from "lucide-react";
+import {
+  Bell,
+  ChevronDown,
+  Home,
+  LogOut,
+  Mail,
+  Plus,
+  Settings,
+  SunMoon,
+  Tent,
+  UserRound,
+} from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
+import { Service } from "@/services/services";
+import { ResponseStatus } from "@/utils/constants";
+import { useToast } from "./ui/use-toast";
 
 export default function SideBar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { toast } = useToast();
   const { theme, setTheme } = useTheme();
   const handleTheme = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark");
+  };
+
+  const handleLogout = async () => {
+    const response = await Service.logout();
+    if (response.status === ResponseStatus.Ok) {
+      toast({
+        description: "Logged out 😔",
+      });
+      router.push("/home");
+    } else {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: response.res?.message,
+      });
+    }
   };
   return (
     <div className="hidden h-screen lg:basis-1/4 md:flex flex-col overflow-hidden sticky left-0 top-0">
@@ -123,6 +161,39 @@ export default function SideBar() {
             </span>
           </Link>
         </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant={"ghost"}
+              className="lg:p-8 rounded-full flex justify-center lg:justify-between p-0 lg:border-2 "
+            >
+              <div className="flex gap-5">
+                <Avatar className="h-12 w-auto">
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <div className="hidden lg:flex flex-col gap-2">
+                  <span className="text-left">name</span>
+                  <span className="text-left">username</span>
+                </div>
+              </div>
+              <ChevronDown className="hidden lg:block" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-pdColor w-56 flex flex-col gap-3 rounded border-2 m-2 p-2 shadow-2xl shadow-zinc-600 animate-out">
+            <DropdownMenuItem
+              className="p-2 flex gap-2 items-center rounded cursor-pointer"
+              onClick={handleLogout}
+            >
+              <LogOut />
+              Logout
+            </DropdownMenuItem>
+            <DropdownMenuItem className="p-2 flex gap-2 items-center rounded cursor-pointer">
+              <Settings />
+              Settings
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Button className="text-4xl self-start lg:self-center rounded-full flex justify-center items-center lg:p-8">
           <div className="lg:hidden">
             <Plus />
