@@ -1,8 +1,8 @@
 "use client";
 import { Comment } from "react-loader-spinner";
-export default function Loader() {
+export default function Loader2() {
   return (
-    <div className="h-screen w-full mx-auto flex justify-center items-center z-[15000]">
+    <div className="h-full w-full mx-auto flex justify-center items-center z-[15000]">
       <Comment
         visible={true}
         height={200}

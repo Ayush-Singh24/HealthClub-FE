@@ -17,7 +17,7 @@ import { ResponseStatus } from "@/utils/constants";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Loader from "@/app/loader";
+import Loader2 from "@/app/loader2";
 
 const loginSchema = z.object({
   username: z
@@ -65,7 +65,7 @@ export default function Login() {
   };
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader2 />;
   }
 
   return (

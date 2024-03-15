@@ -30,7 +30,7 @@ import React, { useState } from "react";
 import { Service } from "@/services/services";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import Loader from "@/app/loader";
+import Loader2 from "@/app/loader2";
 
 const signUpSchema = z
   .object({
@@ -214,7 +214,7 @@ export default function SignUp() {
     setIsUploaded(false);
   };
   if (isLoading) {
-    return <Loader />;
+    return <Loader2 />;
   }
   return (
     <div className="h-full w-full flex">

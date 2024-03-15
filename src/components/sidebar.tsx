@@ -177,7 +177,9 @@ export default function SideBar() {
             >
               <div className="flex gap-5">
                 <Avatar className="h-12 w-12">
-                  <AvatarImage src={`${user?.profilePic}`} />
+                  <AvatarImage
+                    src={user?.profilePic ? `${user?.profilePic}` : ``}
+                  />
                   <AvatarFallback className="text-xl">
                     {user?.firstName[0].toUpperCase()}
                   </AvatarFallback>
