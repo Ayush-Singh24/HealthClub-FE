@@ -83,3 +83,20 @@ export type User = {
   profilePic: string | null;
   isVerified: boolean;
 };
+
+export type Post = {
+  id: string;
+  authorDetails: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    username: string;
+    profilePic: string;
+    profession: string;
+  };
+  description: string;
+  image?: string;
+  tag?: string;
+  title: string;
+  upvotes: number;
+};

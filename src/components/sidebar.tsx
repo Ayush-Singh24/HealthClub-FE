@@ -173,10 +173,10 @@ export default function SideBar() {
           <DropdownMenuTrigger asChild>
             <Button
               variant={"ghost"}
-              className="xl:p-8 xl:rounded-full flex justify-center xl:justify-between p-0 xl:border-2 "
+              className="xl:p-6 xl:rounded-full flex justify-center xl:justify-between p-0 xl:border-2 "
             >
-              <div className="flex gap-5">
-                <Avatar className="h-12 w-12 border-2 border-black">
+              <div className="flex gap-2">
+                <Avatar className="border-2 border-black">
                   <AvatarImage
                     src={user?.profilePic ? `${user?.profilePic}` : ``}
                   />
@@ -184,21 +184,20 @@ export default function SideBar() {
                     {user?.firstName[0].toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
-                <div className="hidden xl:flex flex-col gap-1">
-                  <span className="text-left text-base break-words whitespace-normal">
-                    {(user?.firstName + " " + user?.lastName).length >= 15
-                      ? (user?.firstName + " " + user?.lastName).substring(
-                          0,
-                          12
-                        ) + "..."
-                      : user?.firstName + " " + user?.lastName}
+                <div className="hidden xl:flex flex-col">
+                  <span className="text-left text-sm break-words whitespace-normal">
+                    {user?.firstName && user?.firstName.length >= 15
+                      ? user?.firstName.substring(0, 12) + "..."
+                      : user?.firstName}
                   </span>
-                  <span className="text-left text-zinc-600">
-                    {user?.username}
+                  <span className="text-left text-xs text-zinc-600">
+                    {user?.username && user?.username.length >= 15
+                      ? user?.username.substring(0, 12) + "..."
+                      : user?.username}
                   </span>
                 </div>
               </div>
-              <ChevronDown className="hidden xl:block" />
+              <ChevronDown className="hidden xl:block" size={20} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-pdColor w-56 flex flex-col gap-3 rounded border-2 m-2 p-2 shadow-2xl shadow-zinc-600 animate-out">
