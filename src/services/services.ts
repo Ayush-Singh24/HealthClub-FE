@@ -76,4 +76,7 @@ export class Service {
   static async verify(signal?: AbortSignal) {
     return await makeGetRequest(API_ROUTES.VerifyToken, signal);
   }
+  static async getAllPosts(signal?: AbortSignal) {
+    return await makeGetRequest(API_ROUTES.GetAllPosts, signal);
+  }
 }

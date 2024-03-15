@@ -11,6 +11,7 @@ export const API_ROUTES = {
   SignUp: "/auth/signup",
   Logout: "/auth/logout",
   VerifyToken: "/",
+  GetAllPosts: "/post/all",
 };
 
 export const ResponseStatus = {
