@@ -137,7 +137,7 @@ export default function SideBar() {
         </Button>
         <Button
           asChild
-          className="text-2xl px-0"
+          className="text-2xl px-0 cursor-pointer"
           variant={"ghost"}
           onClick={handleTheme}
         >
@@ -176,7 +176,7 @@ export default function SideBar() {
               className="xl:p-8 xl:rounded-full flex justify-center xl:justify-between p-0 xl:border-2 "
             >
               <div className="flex gap-5">
-                <Avatar className="h-12 w-12">
+                <Avatar className="h-12 w-12 border-2 border-black">
                   <AvatarImage
                     src={user?.profilePic ? `${user?.profilePic}` : ``}
                   />
