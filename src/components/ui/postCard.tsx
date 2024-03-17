@@ -58,11 +58,11 @@ export default function PostCard({ post }: { post: Post }) {
           <div className="flex items-center gap-1">
             <Button variant={"ghost"} className="flex gap-2">
               <MessagesSquare size={20} />
-              <span>323</span>
+              <span>{post.numberOfComments}</span>
             </Button>
           </div>
         </div>
-        {post.tag && <div className="justify-start text-xs">{post.tag}</div>}
+        {/* {post.tag && <div className="justify-start text-xs">{post.tag}</div>} */}
       </div>
     </div>
   );

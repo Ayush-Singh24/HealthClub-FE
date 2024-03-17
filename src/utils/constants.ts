@@ -82,6 +82,7 @@ export type User = {
   profession: string;
   profilePic: string | null;
   isVerified: boolean;
+  joinedOn: string;
 };
 
 export type Post = {
@@ -99,5 +100,6 @@ export type Post = {
   tag?: string;
   title: string;
   upvotes: number;
+  numberOfComments: number;
   postedOn: string;
 };
