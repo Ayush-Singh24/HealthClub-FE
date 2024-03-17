@@ -53,7 +53,7 @@ export default function SideBar() {
     }
   };
   return (
-    <div className="hidden h-screen xl:basis-1/4 md:flex flex-col overflow-hidden sticky left-0 top-0">
+    <div className="hidden h-screen xl:basis-1/4 md:flex flex-col overflow-hidden sticky left-0 top-0 border-r-2">
       <div className="py-5 px-7 hidden xl:block">
         <img src="/images/logo-light.png" className="w-36 hidden dark:block" />
         <img src="/images/logo-dark.png" className="w-36 block dark:hidden" />
