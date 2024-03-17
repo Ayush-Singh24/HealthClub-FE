@@ -2,8 +2,25 @@ import { ArrowBigUp, MessagesSquare } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Button } from "./button";
 import { Post } from "@/utils/constants";
+import { fixedDateFromPrisma } from "@/utils/fixDateTime";
 
 export default function PostCard({ post }: { post: Post }) {
+  const parsedDateTime = fixedDateFromPrisma(post.postedOn);
+  const dateTime = `${
+    parsedDateTime.getHours() +
+    ":" +
+    parsedDateTime.getMinutes() +
+    " - " +
+    parsedDateTime
+      .toLocaleString("en-Us", {
+        month: "long",
+      })
+      .substring(0, 3) +
+    " " +
+    parsedDateTime.getDate() +
+    " , " +
+    parsedDateTime.getFullYear()
+  }`;
   return (
     <div className="bg-rose-100 dark:bg-sdColor xl:p-5 p-3 rounded flex flex-col gap-3 xl:gap-5">
       <div className="flex gap-2 items-center">
@@ -15,7 +32,7 @@ export default function PostCard({ post }: { post: Post }) {
         </Avatar>
         <div className="flex flex-col justify-center mr-auto">
           <span className="text-sm">{post.authorDetails.username}</span>
-          <span className="text-xs">date and time</span>
+          <span className="text-xs">{dateTime}</span>
         </div>
         <div className="text-xs border border-black dark:border-rose-300 p-2 rounded-full">
           {post.authorDetails.profession}

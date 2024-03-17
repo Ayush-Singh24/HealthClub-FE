@@ -99,4 +99,5 @@ export type Post = {
   tag?: string;
   title: string;
   upvotes: number;
+  postedOn: string;
 };
