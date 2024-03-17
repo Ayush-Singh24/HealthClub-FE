@@ -3,9 +3,10 @@ import PostCard from "@/components/ui/postCard";
 import { Service } from "@/services/services";
 import { Post } from "@/utils/constants";
 import { useEffect, useState } from "react";
+import Loader from "../loader";
 
 export default function Feed() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[] | null>(null);
   useEffect(() => {
     const controller = new AbortController();
     Service.getAllPosts(controller.signal)
@@ -15,6 +16,9 @@ export default function Feed() {
       controller.abort();
     };
   }, []);
+  if (posts === null) {
+    return <Loader />;
+  }
   return (
     <section className="w-full flex justify-center">
       <div className="w-full xl:w-4/6 flex flex-col gap-5 xl:gap-10 p-10">
