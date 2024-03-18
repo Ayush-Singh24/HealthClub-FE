@@ -214,7 +214,7 @@ export default function SideBar() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button className="text-4xl self-start xl:self-center xl:rounded-full flex justify-center items-center xl:p-8">
+        <Button className="text-4xl xl:self-center xl:rounded-full flex justify-center items-center xl:p-8">
           <div className="xl:hidden">
             <Plus />
           </div>
