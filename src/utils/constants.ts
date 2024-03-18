@@ -12,6 +12,8 @@ export const API_ROUTES = {
   Logout: "/auth/logout",
   VerifyToken: "/",
   GetAllPosts: "/post/all",
+  UpVote: "/post/upvote",
+  UnVote: "/post/unvote",
 };
 
 export const ResponseStatus = {
@@ -102,4 +104,5 @@ export type Post = {
   upvotes: number;
   numberOfComments: number;
   postedOn: string;
+  upVoters: { id: string }[];
 };

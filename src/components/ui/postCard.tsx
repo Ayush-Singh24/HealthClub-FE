@@ -1,11 +1,18 @@
 import { ArrowBigUp, MessagesSquare } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Button } from "./button";
-import { Post } from "@/utils/constants";
+import { Post, ResponseStatus, User } from "@/utils/constants";
 import { fixedDateFromPrisma } from "@/utils/fixDateTime";
+import { Service } from "@/services/services";
+import { useEffect, useState } from "react";
 
-export default function PostCard({ post }: { post: Post }) {
+export default function PostCard({ post, user }: { post: Post; user: User }) {
   const parsedDateTime = fixedDateFromPrisma(post.postedOn);
+  const [upVotes, setUpVotes] = useState<number>(post.upvotes);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [isVoted, setIsVoted] = useState<boolean>(
+    post.upVoters.find((upvoter) => upvoter.id === user.id) ? true : false
+  );
   const dateTime = `${
     parsedDateTime.getHours() +
     ":" +
@@ -21,6 +28,23 @@ export default function PostCard({ post }: { post: Post }) {
     " , " +
     parsedDateTime.getFullYear()
   }`;
+
+  const handleUpvote = async () => {
+    setIsDisabled(true);
+    if (isVoted) {
+      setIsVoted(false);
+      setUpVotes((upVotes) => upVotes - 1);
+      const response = await Service.unVotePost(post.id);
+      console.log(response);
+    } else {
+      setIsVoted(true);
+      setUpVotes((upVotes) => upVotes + 1);
+      const response = await Service.upVotePost(post.id);
+      console.log(response);
+    }
+    setIsDisabled(false);
+  };
+
   return (
     <div className="bg-rose-100 dark:bg-sdColor xl:p-5 p-3 rounded flex flex-col gap-3 xl:gap-5">
       <div className="flex gap-2 items-center">
@@ -50,9 +74,16 @@ export default function PostCard({ post }: { post: Post }) {
       <div className="flex flex-col md:flex-row gap-2 md:items-center">
         <div className="flex gap-5 w-full justify-between md:justify-normal">
           <div className="flex items-center">
-            <Button variant={"ghost"} className="flex gap-1">
+            <Button
+              variant={"ghost"}
+              className={`flex gap-1 ${
+                isVoted ? "bg-blue-500 hover:bg-blue-800" : ""
+              }`}
+              onClick={handleUpvote}
+              disabled={isDisabled}
+            >
               <ArrowBigUp />
-              <span>{post.upvotes}</span>
+              <span>{upVotes}</span>
             </Button>
           </div>
           <div className="flex items-center gap-1">

@@ -25,7 +25,7 @@ const makePostFormRequest = async (
 
 const makePostRequest = async (
   url: string,
-  data: object,
+  data?: object,
   signal?: AbortSignal
 ) => {
   const response = await fetch(BACKEND_URL + url, {
@@ -33,7 +33,7 @@ const makePostRequest = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: data ? JSON.stringify(data) : null,
     credentials: "include",
     signal: signal,
   });
@@ -78,5 +78,11 @@ export class Service {
   }
   static async getAllPosts(signal?: AbortSignal) {
     return await makeGetRequest(API_ROUTES.GetAllPosts, signal);
+  }
+  static async upVotePost(postId: string, signal?: AbortSignal) {
+    return await makePostRequest(API_ROUTES.UpVote + `/${postId}`, signal);
+  }
+  static async unVotePost(postId: string, signal?: AbortSignal) {
+    return await makePostRequest(API_ROUTES.UnVote + `/${postId}`, signal);
   }
 }
