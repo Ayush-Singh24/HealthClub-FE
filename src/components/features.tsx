@@ -70,6 +70,7 @@ export default function Features() {
         <Image
           alt="image"
           priority
+          className="select-none"
           src="/images/reddit.png"
           width={700}
           height={700}

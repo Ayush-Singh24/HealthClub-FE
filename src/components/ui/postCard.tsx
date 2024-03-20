@@ -48,7 +48,7 @@ export default function PostCard({ post, user }: { post: Post; user: User }) {
   return (
     <div className="bg-rose-100 dark:bg-sdColor xl:p-5 p-3 rounded flex flex-col gap-3 xl:gap-5">
       <div className="flex gap-2 items-center">
-        <Avatar className="md:h-12 md:w-12 border-2 border-black">
+        <Avatar className="md:h-12 select-none md:w-12 border-2 border-black">
           <AvatarImage src={post.authorDetails.profilePic} />
           <AvatarFallback className="text-xl">
             {post.authorDetails.firstName[0]}
@@ -66,7 +66,7 @@ export default function PostCard({ post, user }: { post: Post; user: User }) {
       <div className="flex justify-center max-h-96">
         {post.image && (
           <img
-            className="rounded overflow-hidden object-contain"
+            className="rounded overflow-hidden object-contain select-none"
             src={post.image}
           />
         )}
